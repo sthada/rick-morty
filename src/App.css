@@ -1,38 +1,74 @@
-.App {
+.App { 
+  background-color: black;
+}
+.content-container{
+  margin-left:200px; 
+  margin-top:100px;  
+  min-width:240px;
+  max-width:1200px;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-around;
+  align-items: baseline;
+  flex-wrap: wrap; 
+}
+
+.content-left-pane{ 
+  width: 200px;
+  position: fixed;
+  align-content: flex-start;
+  height:800px;
+  margin-left:0;
+  top:0;
+  left:0;
+  clear:both;
+
+  border:2px #dddd;
+  background-color: white;
+}
+
+.content-filter-pane{ 
+  height: 100px;
+  max-width:100%;
+  position: absolute;
+  top:0;
+  margin-left:200px;
+  border:2px #dddd;
+  background-color: white;
+} 
+
+.my-dropdown{
+  margin: auto;
+  min-width: 200px;
+}
+
+.edetails{
+   margin-top:20px;
+  /*padding: 10px;
+  font-size: 14px; */
+  text-align: center;
+  width: 100%;
+  height:100%;
+  background-color: black;
+  display:inline;
+}
+.characterBlock{
+  width:220px;
+  margin:10px;
+  display:block;
+  top:0;
+  left:0;
+  clear:both;
+}
+.characterBlock img{
+  width:220px;
+  height:100%;
+}
+h3{
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-size:18px;
+  width:220px;
+  display:block;
+  /* margin:10px; */
+  /* font-display: white; */
 }

@@ -22,16 +22,7 @@ class Character extends Component {
     render() {
         
         return (
-            <div >
-                <div className="App" >
-
-                    {/* <DefaultButton
-                        primary={true}
-                        data-automation-id="test"
-                        text="GET DETAILS"
-                        onClick={() => this.props.onClickGetDetails()}
-                        allowDisabledFocus={true} /> */}
-                  
+            <div className="content-container" >
                 {this.props.characterDetail &&<>
                 {this.props.characterDetail.results.map((testChar, index) => {
                      return <div id={index.toString()}>
@@ -69,7 +60,6 @@ class Character extends Component {
                     </div>
                 }
                 )}</>}
-                </div>
             </div>
         );
     }
