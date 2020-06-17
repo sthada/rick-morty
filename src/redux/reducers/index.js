@@ -1,13 +1,12 @@
 import * as actionTypes from '../action';
 
 const initialState = {
-    characterDetail: ''
+    characterDetail: []
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_DETAILS:
-            console.log(JSON.stringify(action.value));
             return {
                 ...state,
                 characterDetail: action.value
@@ -24,6 +23,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 characterDetail: action.value
+            }
+        case actionTypes.SORT_BY_CHANGE:
+            return {
+                ...state,
+                characterDetail: [...action.value]  
+            }
+        case actionTypes.FILTER:
+            return {
+                ...state,
+                characterDetail: [...action.value]
             }
         default:
             return state;

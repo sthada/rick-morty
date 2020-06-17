@@ -1,77 +1,64 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Dropdown, DropdownMenuItemType } from 'office-ui-fabric-react/lib/Dropdown';
-import './App.css';
-import { onClickGetDetails } from './redux/action/service';
-import { bindActionCreators } from 'redux'
 
 class Character extends Component {
     constructor(props) {
         super(props);
         this.state = {
-         
-
+            characterDetailList: this.props.characterDetail
         };
-
     }
+    static getDerivedStateFromProps(props, state){
+        return { characterDetailList: props.characterDetail}
+    }
+
     componentDidMount(){
-        this.props.onClickGetDetails();
     }
 
     render() {
         
         return (
             <div className="content-container" >
-                {this.props.characterDetail &&<>
-                {this.props.characterDetail.results.map((testChar, index) => {
-                     return <div id={index.toString()}>
+                {this.state.characterDetailList && this.state.characterDetailList.map((testChar, index) => {
+                    return <div key={testChar.id.toString()} style={{
+                        border: "solid #777 1px", marginBottom:"10px"}}>
                         <div className="edetails">
                             <div className='characterBlock'>
                                 <img src={testChar.image} alt="" />
 
-
-                                <div style={{ marginTop: '-40px', background: 'rgba(255,255,0,0.5);' }}>
-                                    <div style={{ fontSize: "18px", color: "white" }}>{testChar.name}</div></div>
+                                <div className="translucent-bg">
+                                    <div style={{ fontSize: "18px", color: "white" }}>{testChar.name}</div>
                                 <div style={{ fontSize: "10px", color: "white" }}>id: {testChar.id} - created 2 years ago</div>
+                                </div></div>
+                            <div style={{ fontSize: "18px", color: "white", border:"1px"}}>
+                            <div className="char-attbr-row">
+                                <div className="char-attbr-row-left">STATUS</div>
+                                <div className="char-attbr-row-right">{testChar.status}</div>
                             </div>
-                            <div style={{ fontSize: "12px", border: 'solid 1px #ddd', background: "black", margin: "5px", width: '220px' }}>
-                                <div style={{ fontSize: "12px", color: "white", left: "0", width: "30px", align: "left" }}>STATUS</div>
-                                <div style={{ fontSize: "12px", color: "orange", right: "0", textAlign: "right", align: "right" }}>{testChar.status}</div>
+                            <div className="char-attbr-row">
+                                <div className="char-attbr-row-left">SPECIES</div>
+                                <div className="char-attbr-row-right">{testChar.species}</div>
                             </div>
-                            <div style={{ fontSize: "12px", border: 'solid 1px #ddd', background: "black", margin: "5px", width: '220px' }}>
-                                <div style={{ fontSize: "12px", color: "white", left: "0", width: "30px", align: "left" }}>SPECIES</div>
-                                <div style={{ fontSize: "12px", color: "orange", right: "0", textAlign: "right", align: "right" }}>{testChar.species}</div>
+                            <div className="char-attbr-row">
+                                <div className="char-attbr-row-left">GENDER</div>
+                                <div className="char-attbr-row-right">{testChar.gender}</div>
                             </div>
-                            <div style={{ fontSize: "12px", border: 'solid 1px #ddd', background: "black", margin: "5px", width: '220px' }}>
-                                <div style={{ fontSize: "12px", color: "white", left: "0", width: "30px", align: "left" }}>GENDER</div>
-                                <div style={{ fontSize: "12px", color: "orange", right: "0", textAlign: "right", align: "right" }}>{testChar.gender}</div>
+                            <div className="char-attbr-row">
+                                <div className="char-attbr-row-left">ORIGIN</div>
+                                <div className="char-attbr-row-right">{testChar.origin.name}</div>
                             </div>
-                            <div style={{ fontSize: "12px", border: 'solid 1px #ddd', background: "black", margin: "5px", width: '220px' }}>
-                                <div style={{ fontSize: "12px", color: "white", left: "0", width: "30px", align: "left" }}>ORIGIN</div>
-                                <div style={{ fontSize: "12px", color: "orange", right: "0", textAlign: "right", align: "right" }}>{testChar.origin.name}</div>
+                            <div className="char-attbr-row">
+                                <div className="char-attbr-row-left">LAST LOCATION</div>
+                                <div className="char-attbr-row-right">{testChar.location.name}</div>
                             </div>
-                            <div style={{ fontSize: "12px", border: 'solid 1px #ddd', background: "black", margin: "5px", width: '220px' }}>
-                                <div style={{ fontSize: "12px", color: "white", left: "0", width: "30px", align: "left" }}>LAST LOCATION</div>
-                                <div style={{ fontSize: "12px", color: "orange", right: "0", textAlign: "right", align: "right" }}>{testChar.location.name}</div>
                             </div>
 
                         </div>
                     </div>
                 }
-                )}</>}
+                )}
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        characterDetail: state.characterDetail
-    };
-}
-const mapDispatchToProps = dispatch => bindActionCreators({
-    onClickGetDetails
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Character)
+export default Character;
